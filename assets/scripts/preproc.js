@@ -38,7 +38,7 @@ function initializeData(data) {
  * @param x     Échelle X à utiliser.
  */
 function domainX(xFocus, xContext, data) {
-    let startDate = d3.timeParse("%Y-%m-%d")("1945-01-01")
+    let startDate = d3.timeParse("%Y-%m-%d")("1930-01-01")
     let endDate = d3.timeParse("%Y-%m-%d")("2009-12-31")
 
       xFocus.domain([startDate,endDate])
@@ -71,8 +71,12 @@ function domainX(xFocus, xContext, data) {
    * @param color   Échelle de couleurs.
    * @param data    Données provenant d'un fichier CSV.
    */
-  function domainColor(color, data) {
-
+  function domainColor(color, countries) {
+    let countryCodes = []
+    countries.forEach(element => {
+      countryCodes.push(element.code)
+    });
+    color.domain(countryCodes)
   }
 
 //   e.g.: dataJSONArray = {

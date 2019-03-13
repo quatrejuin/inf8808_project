@@ -57,7 +57,7 @@
     initializeData(data)
 
 
-    var color = d3.scaleOrdinal(d3.schemeCategory8);
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
 
     var xFocus = d3.scaleTime()
     .rangeRound([0, width - 60]);
@@ -76,6 +76,7 @@
     domainX(xFocus, xContext ,data)
     domainY(y, data)
     domainR(r, data)
+    domainColor(color, countries)
 
     var xAxisFocus = d3.axisBottom(xFocus)//.tickFormat(localization.getFormattedDate);
     //var yAxisFocus = d3.axisLeft(yFocus);
@@ -110,6 +111,17 @@
         .attr("transform", "translate(0," + heightContext/2 + ")")
         .call(xAxisContext);
 
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0]);
+    
+    createBubbleChart(focus, data[4].tests, xFocus, y, r, color, tip)
+
+
+    tip.html(function(d) {
+        return getToolTipText.call(this, d, localization.getFormattedNumber)
+    });
+    focus.call(tip);
 
     domainX(x)
     domainY(y)
