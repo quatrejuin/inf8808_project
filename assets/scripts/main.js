@@ -123,8 +123,8 @@
     });
     focus.call(tip);
 
-    domainX(x)
-    domainY(y)
+ 
+ 
 
    
     
