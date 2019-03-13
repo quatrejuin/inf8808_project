@@ -2,12 +2,47 @@
 
 
 /**
+ * Initialise les données provenant des fichiers CSV en convertissant
+ * les nombres au format "string" au format "number".
+ *
+ * @param data    Données provenant d'un fichier CSV.
+ */
+function initializeData(data) {
+  var monthList = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+  data.map(
+    d => d.tests.map(dd=> {
+        dd.YIELD = parseFloat(dd.YIELD)
+        if (isNaN(dd.YIELD))
+        {
+          dd.YIELD = 0
+        }
+        dd.Date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
+    })
+    )
+}
+
+
+// function parseDate(data) {
+//   // TODO: Convertir les dates du fichier CSV en objet de type Date.
+//   var monthList = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+//   monthList.indexOf()
+//   d3.map(data, function(d) {
+//     d.Date = d3.timeParse("%d/%m/%y")()
+//   })
+// }
+
+
+/**
  * Précise le domaine de l'échelle utilisée pour l'axe X du nuage de points.
  *
  * @param x     Échelle X à utiliser.
  */
-function domainX(x) {
-    x.domain([1945,2009])
+function domainX(xFocus, xContext, data) {
+    let startDate = d3.timeParse("%Y-%m-%d")("1945-01-01")
+    let endDate = d3.timeParse("%Y-%m-%d")("2009-12-31")
+
+      xFocus.domain([startDate,endDate])
+      xContext.domain([startDate,endDate])
   }
   
   /**
@@ -24,8 +59,10 @@ function domainX(x) {
    *
    * @param r     Échelle Y à utiliser.
    */
-  function domainR(r) {
-    r.domain()
+  function domainR(r, data) {
+    let min = d3.min(data, d => d3.min(d.tests,dd=>dd.YIELD))
+    let max = d3.max(data, d => d3.max(d.tests,dd=>dd.YIELD))
+    r.domain([min,max])
   }
   
   /**
@@ -46,8 +83,6 @@ function domainX(x) {
 //                             "LAT":"xxxx",
 //                             ...
 //                         }}
-
-
   function createResources(dataCSV, countryCode, countries) {
       let myJSON = {
           country:countryCode,
