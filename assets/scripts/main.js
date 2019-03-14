@@ -7,7 +7,7 @@
         bottom: 10,
         left: 125
     },
-    width = 970 - margin.left - margin.right,
+    width = 1200 - margin.left - margin.right,
     height = 1000,
     tickExtension = 20; // extend grid lines beyond scale range
 
@@ -71,7 +71,7 @@
 
 
     var r = d3.scaleSqrt()
-    .range([5, 50]);
+    .range([3, 40]);
 
     domainX(xFocus, xContext ,data)
     domainY(y, data)
@@ -98,7 +98,7 @@
         
     var focus =svg.append("g")
         .classed("focus",true)
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + (margin.top+200) + ")");
         
 
     var context =svg.append("g")
@@ -108,12 +108,15 @@
     var heightContext  = 100
     context.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + heightContext/2 + ")")
+        .attr("transform", "translate(0," + (heightContext+300) + ")")
         .call(xAxisContext);
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0]);
+    
+    let allData = []
+    data.forEach(d=>allData=allData.concat(d.tests))
     
     createBubbleChart(focus, data[4].tests, xFocus, y, r, color, tip)
 

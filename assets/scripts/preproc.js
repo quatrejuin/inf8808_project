@@ -17,6 +17,7 @@ function initializeData(data) {
           dd.YIELD = 0
         }
         dd.Date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
+        dd.country = d.country
     })
     )
 }
@@ -38,8 +39,8 @@ function initializeData(data) {
  * @param x     Échelle X à utiliser.
  */
 function domainX(xFocus, xContext, data) {
-    let startDate = d3.timeParse("%Y-%m-%d")("1930-01-01")
-    let endDate = d3.timeParse("%Y-%m-%d")("2009-12-31")
+    let startDate = d3.timeParse("%Y-%m-%d")("1945-01-01")
+    let endDate = d3.timeParse("%Y-%m-%d")("2010-12-31")
 
       xFocus.domain([startDate,endDate])
       xContext.domain([startDate,endDate])
