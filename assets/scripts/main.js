@@ -51,7 +51,7 @@
             ), 'pk', countries))
 
         data.push(createResources(dataOthers.filter(d=>
-            d["ID#"][0]==="3"
+            d["ID#"][0]==="4"
             ), 'nk', countries))
     
     initializeData(data)
