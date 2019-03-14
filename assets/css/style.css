@@ -1,5 +1,9 @@
 html, body {
   height: 100%;
-  background-image: linear-gradient(to right top, #c94b4b, #b03452, #912355, #6f1855, #4b134f);
+  background-image: linear-gradient(to right bottom, #fffbd5, #e9cb94, #d8975e, #c85f3b, #b20a2c);
   font-family: Graphik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.g-content {
+  background: white;
 }
