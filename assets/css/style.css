@@ -7,3 +7,9 @@ html, body {
 .g-content {
   background: white;
 }
+
+
+circle.dot:hover{
+    stroke: black;
+    stroke-width: 2px
+}
