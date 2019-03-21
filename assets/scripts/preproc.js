@@ -51,8 +51,13 @@ function domainX(xFocus, xContext, data) {
    *
    * @param y     Échelle Y à utiliser.
    */
-  function domainY(y) {
-    // y.domain([0,140000])
+  function domainY(y, countries, countries_merged, height) {
+    y.domain(countries.map(function(d) {
+        return d.code;
+    }))
+    .range([10, height]);
+
+    y.domain(y.domain().filter(d=>!(countries_merged.includes(d))).concat("others"))
   }
 
 /**

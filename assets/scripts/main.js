@@ -27,8 +27,9 @@
     {name:"Pakistan",code:"pk"},
     {name:"North Korea",code:"nk"}
     ]
+    var countries_merged = ["in","pk","nk"]
 
-    
+
     let data = []
     d3.csv("./data/china.csv").then(function(dataChina) {
         d3.csv("./data/france.csv").then(function(dataFrance) {
@@ -65,7 +66,7 @@
     var xContext = d3.scaleTime()
     .rangeRound([0, width - 60]);
 
-    var y = d3.scaleOrdinal();
+    var y = d3.scalePoint();
 
     var y0 = 150;
 
@@ -74,7 +75,7 @@
     .range([3, 40]);
 
     domainX(xFocus, xContext ,data)
-    domainY(y, data)
+    domainY(y, countries, countries_merged, height)
     domainR(r, data)
     domainColor(color, countries)
 
@@ -84,7 +85,7 @@
     var xAxisContext = d3.axisBottom(xContext).tickFormat(localization.getFormattedDate);
 
     // Add view switch button
-    window.currentView = "country";
+    window.currentView = "overall";
 
     d3.selectAll(".g-content button[data-view]")
         .datum(function(d) {
@@ -114,11 +115,29 @@
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0]);
-    
+
     let allData = []
     data.forEach(d=>allData=allData.concat(d.tests))
+
+
+    initialBubbleChart(allData, xFocus, y, r, "country")
+    // Put "country" view coordinates into x1, y1
+    allData.forEach(d=>{
+        d.x1 = d.x
+        d.y1 = d.y
+    })
+
+
+    initialBubbleChart(allData, xFocus, y, r, "overall")
+    // Put "overall" view coordinates into x0, y0
+    allData.forEach(d=>{
+        d.x0 = d.x
+        d.y0 = d.y
+    })
+
     
-    createBubbleChart(focus, data[4].tests, xFocus, y, r, color, tip)
+
+    createBubbleChart(focus, allData, xFocus, y, r, color, tip)
 
 
     tip.html(function(d) {
@@ -126,11 +145,6 @@
     });
     focus.call(tip);
 
- 
- 
-
-   
-    
 })
 })
 })
