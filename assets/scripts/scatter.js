@@ -86,18 +86,6 @@ function createHorizontalLines(x,y,countries)
 {
   let g = d3.select("g.focus")
   .append("g")
-  // For overall view
-  g.append("g")
-  .attr("class","x axis overall")
-  .append("line")
-  .attr("x1",x.range()[0])
-  .attr("x2",x.range()[1])
-  .attr("y1",0)
-  .attr("y2",0)
-  .style("stroke","#00000050")
-  .style("stroke-width",1)
-  .attr("stroke-dasharray","10,5")
-
 
   // For country view
   g.selectAll("g.x.axis.country")
@@ -115,4 +103,12 @@ function createHorizontalLines(x,y,countries)
   .style("stroke","#00000050")
   .style("stroke-width",1)
   .attr("stroke-dasharray","10,5")
+
+  // For overall view
+  g.select("g.x.axis.country")
+  .clone(true)   // Deep clone the first country axis, to reuse the position and style
+  .lower()       // Re-inserts each selected element, in order, as the first child of its parent. 
+  .attr("class","x axis overall")
+  .attr("id",null)
+  .datum("overall")
 }
