@@ -16,6 +16,6 @@ function getToolTipText(d, formatNumber) {
   // TODO: Retourner le texte à afficher dans l'infobulle selon le format demandé.
   //       Assurez-vous d'utiliser la fonction "formatNumber" pour formater les nombres correctement.
   return "Country: "+d.country+"<br>"
-  +"Date: "+d.Date+"<br>"
-  +"Yield "+d.YIELD;
+  +"Date: "+d.date+"<br>"
+  +"Yield: "+d.YIELD;
 }
