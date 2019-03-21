@@ -20,8 +20,8 @@
 
     var countries = {
         us:"United States",
-        uk:"United Kindom",
         ru:"Russia",
+        uk:"United Kindom",
         fr:"France",
         cn:"China",
         in:"India",
