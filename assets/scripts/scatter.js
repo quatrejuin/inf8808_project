@@ -17,7 +17,7 @@ function initialBubbleChart(data, x, y, r ,view) {
   //       Assurez-vous d'afficher l'infobulle spécifiée lorsqu'un cercle est survolé.
   var simulation = d3.forceSimulation(data)
   .force('x', d3.forceX().x(function(d) {
-    return x(d.Date);
+    return x(d.date);
   }))
   .force('y', d3.forceY().y(function(d) {
     var y_base = 0

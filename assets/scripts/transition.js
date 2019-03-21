@@ -2,53 +2,37 @@
 
 let dur_time = 1000
 
-function transitionView(view) {
-    if (window.currentView === view) view = view === "overall" ? "country" : "overall";
-    d3.selectAll(".g-buttons button[data-view]").classed("g-active", function(v) {
-        return v === view;
+function transitionView(curView,height,margin,y) {
+    let view = curView.attr("data-view")
+    d3.selectAll(`.g-buttons button[data-view="${view}"]`)
+    .classed("g-active", function(d){
+        return d3.select(this).attr("data-view")==view
     })
-    switch (window.currentView = view) {
-        case "overall":
-            return void transitionOverall();
-        case "country":
-            return void transitionCountry();
+
+    var v = (view== "overall")?0:1
+    var viewParams = {
+        h: [height.overall, height.country][v],
+        translateY: [height.overall/2, y.step()/2][v]
     }
-}
-
-function transitionOverall() {
-    var g = d3.select("g.focus")
-    var u = g.selectAll('circle.dot')
-            .transition()
-            .duration(dur_time)
-            .attr("cx",d=>d.x0)
-            .attr("cy",d=>d.y0)
-
-    d3.select("svg")
-    .transition()
-    .duration(dur_time)
-    .attr("height",450)
-
-    d3.select("g.x.axis")
-    .transition()
-    .duration(dur_time)
-    .attr("transform","translate(0,400)")
-}
-
-function transitionCountry() {
     var g = d3.select("g.focus")
     var u = g.selectAll('circle.dot')
     .transition()
     .duration(1000)
-    .attr("cx",d=>d.x1)
-    .attr("cy",d=>d.y1)
+    .attr("cx",d=>d["x"+v])
+    .attr("cy",d=>d["y"+v])
 
     d3.select("svg")
     .transition()
     .duration(dur_time)
-    .attr("height",1400)
+    .attr("height",viewParams.h + height.context + margin.top + margin.bottom)
 
-    d3.select("g.x.axis")
+    d3.select("g.focus")
     .transition()
     .duration(dur_time)
-    .attr("transform","translate(0,1300)")
+    .attr("transform","translate(0,"+viewParams.translateY+")")
+
+    d3.select("g.context")
+    .transition()
+    .duration(dur_time)
+    .attr("transform","translate(0,"+(viewParams.h)+")")
 }

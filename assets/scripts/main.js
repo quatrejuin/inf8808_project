@@ -2,13 +2,17 @@
     "use strict";
 
     var margin = {
-        top: 20,
+        top: 50,
         right: 95,
-        bottom: 10,
+        bottom: 20,
         left: 125
     },
+    height = {
+        overall: 400,
+        country: 950,
+        context: 50,
+    },
     width = 1200 - margin.left - margin.right,
-    height = 1000,
     tickExtension = 20; // extend grid lines beyond scale range
 
     var formatPercent = d3.format(".0%"),
@@ -91,25 +95,29 @@
         .datum(function(d) {
             return this.getAttribute("data-view");
         })
-        .on("click", transitionView);
+        .on("click", function () {
+            transitionView(d3.select(this), height, margin, y);
+          });
     
     var svg = d3.select(".g-graphic").append("svg")
-        .attr("height", 420 + margin.top + margin.bottom)
+        .attr("height", height.context + height.overall + margin.top + margin.bottom)
         .attr("width", width + margin.left + margin.right)
+
+    var graph = svg.append("g")
+        .classed("graph",true)
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-    var focus =svg.append("g")
+    var focus =graph.append("g")
         .classed("focus",true)
-        .attr("transform", "translate(" + margin.left + "," + (margin.top+200) + ")");
+        .attr("transform", "translate(0," + height.overall/2 + ")");
         
 
-    var context =svg.append("g")
+    var context =graph.append("g")
         .classed("context",true)
-        .attr("transform", "translate(" + margin.left + "," + 0 + ")");
+        .attr("transform", "translate(0," + height.overall  + ")");
 
-    var heightContext  = 100
     context.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + (heightContext+300) + ")")
         .call(xAxisContext);
 
     var tip = d3.tip()

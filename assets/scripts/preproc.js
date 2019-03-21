@@ -16,21 +16,11 @@ function initializeData(data) {
         {
           dd.YIELD = 0
         }
-        dd.Date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
+        dd.date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
         dd.country = d.country
     })
     )
 }
-
-
-// function parseDate(data) {
-//   // TODO: Convertir les dates du fichier CSV en objet de type Date.
-//   var monthList = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-//   monthList.indexOf()
-//   d3.map(data, function(d) {
-//     d.Date = d3.timeParse("%d/%m/%y")()
-//   })
-// }
 
 
 /**
@@ -55,7 +45,7 @@ function domainX(xFocus, xContext, data) {
     y.domain(countries.map(function(d) {
         return d.code;
     }))
-    .range([10, height]);
+    .range([0, height.country*0.85]);
 
     y.domain(y.domain().filter(d=>!(countries_merged.includes(d))).concat("others"))
   }
