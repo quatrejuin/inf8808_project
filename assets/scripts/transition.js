@@ -12,12 +12,15 @@ function transitionView(curView,height,margin,y) {
     var v = (view== "overall")?0:1
     var viewParams = {
         h: [height.overall, height.country][v],
-        translateY: [height.overall/2, y.step()/2][v]
+        translateY: [height.overall/2, y.step()/2][v],
+        showCountryAxis: v,    // 0: Hide; 1: Show
+        showOverallAxis: 1-v   // 0: Hide; 1: Show
     }
     var g = d3.select("g.focus")
     var u = g.selectAll('circle.dot')
     .transition()
-    .duration(1000)
+    .duration(dur_time)
+    .delay(d=>d["x"+v])
     .attr("cx",d=>d["x"+v])
     .attr("cy",d=>d["y"+v])
 
@@ -35,4 +38,7 @@ function transitionView(curView,height,margin,y) {
     .transition()
     .duration(dur_time)
     .attr("transform","translate(0,"+(viewParams.h)+")")
+
+    d3.selectAll("g.x.axis.country").style("opacity",viewParams.showCountryAxis)
+    d3.selectAll("g.x.axis.overall").style("opacity",viewParams.showOverallAxis)
 }

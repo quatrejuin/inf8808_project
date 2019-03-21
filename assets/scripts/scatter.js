@@ -58,7 +58,7 @@ function createBubbleChart(g, data, x, y, r, color, tip, view) {
   // TODO: Dessiner les cercles du graphique en utilisant les échelles spécifiées.
   //       Assurez-vous d'afficher l'infobulle spécifiée lorsqu'un cercle est survolé.
 
-var u = g.selectAll('circle')
+var u = g.append("g").selectAll('circle')
 .data(data);
 
 u.enter()
@@ -80,4 +80,38 @@ u.enter()
 .on('mouseout', tip.hide);
 
 
+}
+
+function createHorizontalLines(x,y,countries)
+{
+  let g = d3.select("g.focus")
+  .append("g")
+  // For overall view
+  g.append("g")
+  .attr("class","x axis overall")
+  .append("line")
+  .attr("x1",x.range()[0])
+  .attr("x2",x.range()[1])
+  .attr("y1",0)
+  .attr("y2",0)
+  .style("stroke","#00000050")
+  .style("stroke-width",1)
+  .attr("stroke-dasharray","10,5")
+
+
+  // For country view
+  g.selectAll("g.x.axis.country")
+  .data(y.domain())
+  .enter()
+  .append("g")
+  .attr("class","x axis country")
+  .attr("id",(d,id)=>id)
+  .append("line")
+  .attr("x1",x.range()[0])
+  .attr("x2",x.range()[1])
+  .attr("y1",d=>y(d))
+  .attr("y2",d=>y(d))
+  .style("stroke","#00000050")
+  .style("stroke-width",1)
+  .attr("stroke-dasharray","10,5")
 }

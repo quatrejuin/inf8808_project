@@ -67,7 +67,6 @@
     var xContext = d3.scaleTime()
     .rangeRound([0, width - 60]);
 
-    var y = d3.scalePoint();
 
     var y0 = 150;
 
@@ -76,7 +75,7 @@
     .range([3, 40]);
 
     domainX(xFocus, xContext ,data)
-    domainY(y, countries, countries_merged, height)
+    var y = domainY()
     domainR(r, data)
     domainColor(color, countries)
 
@@ -86,7 +85,7 @@
     var xAxisContext = d3.axisBottom(xContext).tickFormat(localization.getFormattedDate);
 
     // Add view switch button
-    window.currentView = "overall";
+    //window.currentView = "overall";
 
     d3.selectAll(".g-content button[data-view]")
         .datum(function(d) {
@@ -141,9 +140,10 @@
     })
 
     
-
+    createHorizontalLines(xFocus,y,countries)
     createBubbleChart(focus, allData, xFocus, y, r, color, tip)
 
+    transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
 
     tip.html(function(d) {
         return getToolTipText.call(this, d, formatNumber, formatDate, countries)

@@ -29,7 +29,7 @@ function initializeData(data) {
  * @param x     Échelle X à utiliser.
  */
 function domainX(xFocus, xContext, data) {
-    let startDate = d3.timeParse("%Y-%m-%d")("1945-01-01")
+    let startDate = d3.timeParse("%Y-%m-%d")("1944-01-01")
     let endDate = d3.timeParse("%Y-%m-%d")("2010-12-31")
 
       xFocus.domain([startDate,endDate])
@@ -41,11 +41,23 @@ function domainX(xFocus, xContext, data) {
    *
    * @param y     Échelle Y à utiliser.
    */
-  function domainY(y, countries, countries_merged, height) {
-    y.domain(Object.keys(countries))
-    .range([0, height.country*0.85]);
-
-    y.domain(y.domain().filter(d=>!(countries_merged.includes(d))).concat("others"))
+  function domainY() {
+    var y = function(pos)
+    {
+        let spaceBig = 220, spaceSmall = 100;
+        let posList = {}
+        posList.us = 0
+        posList.ru = spaceBig
+        posList.uk = posList.ru+spaceBig
+        posList.fr = posList.uk+spaceSmall
+        posList.cn = posList.fr+spaceSmall
+        posList.others = posList.cn+spaceSmall
+        
+        return posList[pos]
+    }
+    y.domain = d=> ["us","ru","uk","fr","cn","others"]
+    y.step = d=>100
+    return y
   }
 
 /**
