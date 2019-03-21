@@ -146,7 +146,7 @@
 
 
     tip.html(function(d) {
-        return getToolTipText.call(this, d, localization.getFormattedNumber)
+        return getToolTipText.call(this, d, formatNumber, formatDate, countries)
     });
     focus.call(tip);
 

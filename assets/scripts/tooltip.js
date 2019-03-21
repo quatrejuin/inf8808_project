@@ -12,10 +12,10 @@
  * @param formatNumber    Fonction permettant de formater correctement des nombres.
  * @return {string}       Le texte à afficher dans l'infobulle.
  */
-function getToolTipText(d, formatNumber) {
+function getToolTipText(d, formatNumber, formatDate, countries) {
   // TODO: Retourner le texte à afficher dans l'infobulle selon le format demandé.
   //       Assurez-vous d'utiliser la fonction "formatNumber" pour formater les nombres correctement.
-  return "Country: "+d.country+"<br>"
-  +"Date: "+d.date+"<br>"
-  +"Yield: "+d.YIELD;
+  return "Country: "+countries[d.country]+"<br>"
+  +"Date: "+formatDate(d.date)+"<br>"
+  +"Yield: "+formatNumber(d.YIELD);
 }
