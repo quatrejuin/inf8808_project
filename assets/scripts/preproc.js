@@ -42,9 +42,7 @@ function domainX(xFocus, xContext, data) {
    * @param y     Échelle Y à utiliser.
    */
   function domainY(y, countries, countries_merged, height) {
-    y.domain(countries.map(function(d) {
-        return d.code;
-    }))
+    y.domain(Object.keys(countries))
     .range([0, height.country*0.85]);
 
     y.domain(y.domain().filter(d=>!(countries_merged.includes(d))).concat("others"))
@@ -68,10 +66,7 @@ function domainX(xFocus, xContext, data) {
    * @param data    Données provenant d'un fichier CSV.
    */
   function domainColor(color, countries) {
-    let countryCodes = []
-    countries.forEach(element => {
-      countryCodes.push(element.code)
-    });
+    let countryCodes = Object.keys(countries);
     color.domain(countryCodes)
   }
 
@@ -83,7 +78,7 @@ function domainX(xFocus, xContext, data) {
 //                             "LAT":"xxxx",
 //                             ...
 //                         }}
-  function createResources(dataCSV, countryCode, countries) {
+  function createResources(dataCSV, countryCode) {
       let myJSON = {
           country:countryCode,
           tests: dataCSV

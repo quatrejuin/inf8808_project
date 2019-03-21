@@ -15,22 +15,19 @@
     width = 1200 - margin.left - margin.right,
     tickExtension = 20; // extend grid lines beyond scale range
 
-    var formatPercent = d3.format(".0%"),
-    formatTenthPercent = d3.format(".1%"),
-    formatNumber = d3.format(",.3s"),
-    formatDollars = function(d) {
-        return (d < 0 ? "-" : "") + "$" + formatNumber(Math.abs(d)).replace(/G$/, "B");
-    };
+    var formatNumber = d3.format(",.3s"),
+    formatDate = d3.timeFormat("%Y-%m-%d");
 
-    var countries = [{name:"United States",code:"us"}, 
-    {name:"United Kindom",code:"uk"},
-    {name:"Russia",code:"ru"},
-    {name:"France",code:"fr"},
-    {name:"China",code:"cn"},
-    {name:"India",code:"in"},
-    {name:"Pakistan",code:"pk"},
-    {name:"North Korea",code:"nk"}
-    ]
+    var countries = {
+        us:"United States",
+        uk:"United Kindom",
+        ru:"Russia",
+        fr:"France",
+        cn:"China",
+        in:"India",
+        pk:"Pakistan",
+        nk:"North Korea"
+    }
     var countries_merged = ["in","pk","nk"]
 
 
@@ -42,22 +39,22 @@
                     d3.csv("./data/us.csv").then(function(dataUS) {
                         d3.csv("./data/others.csv").then(function(dataOthers) {
 
-    data.push(createResources(dataChina, 'cn', countries))
-    data.push(createResources(dataFrance, 'fr', countries))
-    data.push(createResources(dataRussia, 'ru', countries))
-    data.push(createResources(dataUK, 'uk', countries))
-    data.push(createResources(dataUS, 'us', countries))
+    data.push(createResources(dataChina, 'cn'))
+    data.push(createResources(dataFrance, 'fr'))
+    data.push(createResources(dataRussia, 'ru'))
+    data.push(createResources(dataUK, 'uk'))
+    data.push(createResources(dataUS, 'us'))
     data.push(createResources(dataOthers.filter(d=>
             d["ID#"][0]==="1"
-            ), 'in', countries))
+            ), 'in'))
 
         data.push(createResources(dataOthers.filter(d=>
             d["ID#"][0]==="2"
-            ), 'pk', countries))
+            ), 'pk'))
 
         data.push(createResources(dataOthers.filter(d=>
             d["ID#"][0]==="4"
-            ), 'nk', countries))
+            ), 'nk'))
     
     initializeData(data)
 
