@@ -48,7 +48,7 @@ function domainX(xFocus, xContext, data) {
         let posList = {}
         posList.us = 0
         posList.ru = spaceBig
-        posList.uk = posList.ru+spaceBig
+        posList.uk = posList.ru+spaceBig - spaceSmall/2
         posList.fr = posList.uk+spaceSmall
         posList.cn = posList.fr+spaceSmall
         posList.others = posList.cn+spaceSmall

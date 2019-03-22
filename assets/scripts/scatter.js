@@ -104,11 +104,35 @@ function createHorizontalLines(x,y,countries)
   .style("stroke-width",1)
   .attr("stroke-dasharray","10,5")
 
-  // For overall view
-  g.select("g.x.axis.country")
-  .clone(true)   // Deep clone the first country axis, to reuse the position and style
-  .lower()       // Re-inserts each selected element, in order, as the first child of its parent. 
-  .attr("class","x axis overall")
-  .attr("id",null)
-  .datum("overall")
+  // // For overall view
+  // g.select("g.x.axis.country")
+  // .clone(true)   // Deep clone the first country axis, to reuse the position and style
+  // .lower()       // Re-inserts each selected element, in order, as the first child of its parent. 
+  // .attr("class","x axis overall")
+  // .attr("id",null)
+  // .datum("overall")
+}
+
+
+function createCountryNameLabel(x,y,color,countries)
+{
+  let g = d3.selectAll("g.x.axis.country")
+  g.append("rect")
+  .classed("countryNameBox",true)
+  .attr("rx",10)
+  .attr("ry",10)
+  .attr("x", -100)
+  .attr("y", -15)
+  .attr("width",100)
+  .attr("height",30)
+  .style("fill",d=>color(d))
+  
+
+  g.append("text")
+  .attr("x",-50)
+  .attr("fill","white")
+  .attr("font-size",12)
+  .attr("text-anchor","middle")
+  .attr("alignment-baseline","middle")
+  .text(d=>countries[d])
 }

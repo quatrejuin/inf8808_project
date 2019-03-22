@@ -141,6 +141,8 @@
 
     
     createHorizontalLines(xFocus,y,countries)
+    createCountryNameLabel(xFocus,y,color,countries)
+
     createBubbleChart(focus, allData, xFocus, y, r, color, tip)
 
     transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
