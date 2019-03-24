@@ -12,7 +12,7 @@
  * @param tip     L'infobulle à afficher lorsqu'un cercle est survolé.
  * @param view
  */
-function initialBubbleChart(data, x, y, r ,view) {
+function initialBubbleChart(data, x, y, r ,view,countries) {
   // TODO: Dessiner les cercles du graphique en utilisant les échelles spécifiées.
   //       Assurez-vous d'afficher l'infobulle spécifiée lorsqu'un cercle est survolé.
   var simulation = d3.forceSimulation(data)
@@ -23,7 +23,7 @@ function initialBubbleChart(data, x, y, r ,view) {
     var y_base = 0
     if (view == "country")
     {
-      y_base = y(y.domain().includes(d.country)?d.country:'others')
+      y_base = y(countries[d.country][0])
     }
     if (isNaN(y_base))
     {
@@ -117,6 +117,16 @@ function createHorizontalLines(x,y,countries)
 function createCountryNameLabel(x,y,color,countries)
 {
   let g = d3.selectAll("g.x.axis.country")
+
+  let labelGroupY = d3.scalePoint()
+  g = g.selectAll("g.countryNameGroup")
+  // Data is the country code array. e.g: ["us"],["in","pk","nk"]
+  .data(id=>getCountriesByAxisGroup(countries, id)) 
+  .enter()
+  .append("g")
+  .classed("countryNameGroup",true)
+  .attr("transform",(code,i)=>`translate(0,${i*32})`)
+
   g.append("rect")
   .classed("countryNameBox",true)
   .attr("rx",10)
@@ -125,7 +135,7 @@ function createCountryNameLabel(x,y,color,countries)
   .attr("y", -15)
   .attr("width",100)
   .attr("height",30)
-  .style("fill",d=>color(d))
+  .style("fill",code=>color(code))
   
 
   g.append("text")
@@ -134,5 +144,7 @@ function createCountryNameLabel(x,y,color,countries)
   .attr("font-size",12)
   .attr("text-anchor","middle")
   .attr("alignment-baseline","middle")
-  .text(d=>countries[d])
+  .text(
+    code=>countries[code][1]
+    )
 }

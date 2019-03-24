@@ -41,21 +41,16 @@ function domainX(xFocus, xContext, data) {
    *
    * @param y     Échelle Y à utiliser.
    */
-  function domainY() {
+  function domainY(axisGroups) {
     var y = function(pos)
     {
         let spaceBig = 220, spaceSmall = 100;
-        let posList = {}
-        posList.us = 0
-        posList.ru = spaceBig
-        posList.uk = posList.ru+spaceBig - spaceSmall/2
-        posList.fr = posList.uk+spaceSmall
-        posList.cn = posList.fr+spaceSmall
-        posList.others = posList.cn+spaceSmall
+        let spaceList = [0,spaceBig,spaceBig - spaceSmall/2,spaceSmall,spaceSmall,spaceSmall]
+        let posList = spaceList.map((s,i)=>i>1?d3.sum(spaceList.slice(0,i+1)):s )
         
         return posList[pos]
     }
-    y.domain = d=> ["us","ru","uk","fr","cn","others"]
+    y.domain = d=> axisGroups
     y.step = d=>100
     return y
   }
@@ -97,4 +92,16 @@ function domainX(xFocus, xContext, data) {
       }
 
       return myJSON
+  }
+
+  /**
+   * 
+   * @param groupID     AxisGroup ID
+   * Return an array of country code
+   */
+  function getCountriesByAxisGroup(countries,groupID) {
+    var cKeys = Object.keys(countries)
+    var cValues = Object.values(countries)
+
+    return cKeys.filter((d,i)=>cValues[i][0]==groupID)
   }

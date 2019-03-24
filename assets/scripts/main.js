@@ -19,15 +19,20 @@
     formatDate = d3.timeFormat("%Y-%m-%d");
 
     var countries = {
-        us:"United States",
-        ru:"Russia",
-        uk:"United Kindom",
-        fr:"France",
-        cn:"China",
-        in:"India",
-        pk:"Pakistan",
-        nk:"North Korea"
+        // countryCode: [axisGroup, countryName]
+        us:[0,"United States"],
+        ru:[1,"Russia"],
+        uk:[2,"United Kindom"],
+        fr:[3,"France"],
+        cn:[4,"China"],
+        in:[5,"India"],
+        pk:[5,"Pakistan"],
+        nk:[5,"North Korea"]
     }
+    var minGroup = d3.min(Object.values(countries), d=>d[0])
+    var maxGroup = d3.max(Object.values(countries), d=>d[0])
+    var axisGroups = d3.range(minGroup,maxGroup+1)
+
     var countries_merged = ["in","pk","nk"]
 
 
@@ -75,7 +80,7 @@
     .range([3, 40]);
 
     domainX(xFocus, xContext ,data)
-    var y = domainY()
+    var y = domainY(axisGroups)
     domainR(r, data)
     domainColor(color, countries)
 
@@ -124,7 +129,7 @@
     data.forEach(d=>allData=allData.concat(d.tests))
 
 
-    initialBubbleChart(allData, xFocus, y, r, "country")
+    initialBubbleChart(allData, xFocus, y, r, "country",countries)
     // Put "country" view coordinates into x1, y1
     allData.forEach(d=>{
         d.x1 = d.x
@@ -132,7 +137,7 @@
     })
 
 
-    initialBubbleChart(allData, xFocus, y, r, "overall")
+    initialBubbleChart(allData, xFocus, y, r, "overall",countries)
     // Put "overall" view coordinates into x0, y0
     allData.forEach(d=>{
         d.x0 = d.x
