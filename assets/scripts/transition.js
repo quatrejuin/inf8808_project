@@ -4,7 +4,7 @@ let dur_time = 1000
 
 function transitionView(curView,height,margin,y) {
     let view = curView.attr("data-view")
-    d3.selectAll(`.g-buttons button[data-view="${view}"]`)
+    d3.selectAll(`.g-buttons button[data-view]`)
     .classed("g-active", function(d){
         return d3.select(this).attr("data-view")==view
     })
