@@ -137,11 +137,13 @@
             pBar1.remove()
             pBar2.remove()
 
+            
+    
+            createHorizontalLines(focus,xFocus,y,countries)
+            createCountryNameLabel(focus,xFocus,y,color,countries)
+
             createBubbleChart(focus, allData, xFocus, y, r, color, tip)
 
-    
-            createHorizontalLines(xFocus,y,countries)
-            createCountryNameLabel(xFocus,y,color,countries)
 
             // Add two switch buttons
             var buttons = d3.select("div.g-graphic")

@@ -85,12 +85,10 @@ u.enter()
 
 }
 
-function createHorizontalLines(x,y,countries)
+function createHorizontalLines(focus, x, y, countries)
 {
-  let g = d3.select("g.focus")
-  .append("g")
-
-  g.selectAll("g.x.axis.country")
+  focus.append("g")
+  .selectAll("g.x.axis.country")
   .data(y.domain())
   .enter()
   .append("g")
@@ -109,7 +107,7 @@ function createHorizontalLines(x,y,countries)
 }
 
 
-function createCountryNameLabel(x,y,color,countries)
+function createCountryNameLabel(focus, x, y, color, countries)
 {
   let g = d3.selectAll("g.x.axis.country")
 
