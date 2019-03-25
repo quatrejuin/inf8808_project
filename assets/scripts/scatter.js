@@ -12,9 +12,10 @@
  * @param tip     L'infobulle à afficher lorsqu'un cercle est survolé.
  * @param view
  */
-function initialBubbleChart(data, x, y, r ,view,countries) {
+function initialBubbleChart(data, x, y, r ,view, countries, pBar, endFunc) {
   // TODO: Dessiner les cercles du graphique en utilisant les échelles spécifiées.
   //       Assurez-vous d'afficher l'infobulle spécifiée lorsqu'un cercle est survolé.
+  var i = 0;   // Tick iteration counter
   var simulation = d3.forceSimulation(data)
   .force('x', d3.forceX().x(function(d) {
     return x(d.date);
@@ -35,9 +36,11 @@ function initialBubbleChart(data, x, y, r ,view,countries) {
   .force('collision', d3.forceCollide().radius(function(d) {
     return r(d.YIELD)+0.1;
   }))
-  .stop()
-
-for (var i = 0;i <500;i++) simulation.tick()
+  .on("tick",()=>{
+    updateProgressBar(pBar, i/400)
+    i++
+  })
+  .on("end", endFunc)
 
 }
 

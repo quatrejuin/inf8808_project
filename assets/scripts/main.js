@@ -91,14 +91,6 @@
 
     // Add view switch button
     //window.currentView = "overall";
-
-    d3.selectAll(".g-content button[data-view]")
-        .datum(function(d) {
-            return this.getAttribute("data-view");
-        })
-        .on("click", function () {
-            transitionView(d3.select(this), height, margin, y);
-          });
     
     var svg = d3.select(".g-graphic").append("svg")
         .attr("height", height.context + height.overall + margin.top + margin.bottom)
@@ -117,10 +109,6 @@
         .classed("context",true)
         .attr("transform", "translate(0," + height.overall  + ")");
 
-    context.append("g")
-        .attr("class", "x axis")
-        .call(xAxisContext);
-
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0]);
@@ -129,34 +117,65 @@
     data.forEach(d=>allData=allData.concat(d.tests))
 
 
-    initialBubbleChart(allData, xFocus, y, r, "country",countries)
-    // Put "country" view coordinates into x1, y1
-    allData.forEach(d=>{
-        d.x1 = d.x
-        d.y1 = d.y
-    })
+    // Create progress bar
+    let positionX = 200;
+    let positionY = 200;
+    let pBar1 = createProgressBar(svg, positionX, positionY, width, "#1f77b450")
+    let pBar2 = createProgressBar(svg, positionX, positionY, width, "#1f77b4ff")
 
+    initialBubbleChart(allData, xFocus, y, r, "country", countries, pBar1,()=>{
+        allData.forEach(d=>{
+            d.x1 = d.x
+            d.y1 = d.y
+        })
+        initialBubbleChart(allData, xFocus, y, r, "overall", countries, pBar2,()=>{
+            allData.forEach(d=>{
+                d.x0 = d.x
+                d.y0 = d.y
+            })
 
-    initialBubbleChart(allData, xFocus, y, r, "overall",countries)
-    // Put "overall" view coordinates into x0, y0
-    allData.forEach(d=>{
-        d.x0 = d.x
-        d.y0 = d.y
-    })
+            pBar1.remove()
+            pBar2.remove()
+
+            createBubbleChart(focus, allData, xFocus, y, r, color, tip)
 
     
-    createHorizontalLines(xFocus,y,countries)
-    createCountryNameLabel(xFocus,y,color,countries)
+            createHorizontalLines(xFocus,y,countries)
+            createCountryNameLabel(xFocus,y,color,countries)
 
-    createBubbleChart(focus, allData, xFocus, y, r, color, tip)
+            // Add two switch buttons
+            var buttons = d3.select("div.g-graphic")
+            .insert("div", ":first-child")
+            .classed("g-buttons",true)
+            buttons.append("button")
+            .classed("g-button",true)
+            .attr("data-view","overall")
+            .text("The Overall Picture")
+            buttons.append("button")
+            .classed("g-button",true)
+            .attr("data-view","country")
+            .text("The View by Country")
+            
+            d3.selectAll(".g-content button[data-view]")
+            .datum(function(d) {
+                return this.getAttribute("data-view");
+            })
+            .on("click", function () {
+                transitionView(d3.select(this), height, margin, y);
+              });
 
-    transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
+            transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
 
-    tip.html(function(d) {
-        return getToolTipText.call(this, d, formatNumber, formatDate, countries)
-    });
-    focus.call(tip);
+            context.append("g")
+            .attr("class", "x axis")
+            .call(xAxisContext);
 
+            tip.html(function(d) {
+                return getToolTipText.call(this, d, formatNumber, formatDate, countries)
+            });
+            focus.call(tip);
+        })
+    })
 })
 })
 })
