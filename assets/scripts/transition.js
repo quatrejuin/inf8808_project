@@ -16,7 +16,8 @@ function transitionView(curView,height,margin,y) {
         showCountryAxis: v,    // 0: Hide; 1: Show
         showOverallAxis: 1-v,   // 0: Hide; 1: Show
         axisY: [c=>0,c=>y(c)][v],
-        posLabelGp: [{0:-120,1:-90,2:-60,3:-30,4:0,5:30,6:60,7:90},{0:0,1:0,2:0,3:0,4:0,5:0,6:30,7:60}][v]
+        posLabelGp: [{0:-120,1:-90,2:-60,3:-30,4:0,5:30,6:60,7:90},
+            {0:0,1:0,2:0,3:0,4:0,5:0,6:30,7:60}][v]
     }
     var g = d3.select("g.focus")
     var u = g.selectAll('circle.dot')
@@ -47,7 +48,10 @@ function transitionView(curView,height,margin,y) {
     .attr("transform",d=>`translate(0,${viewParams.axisY(d)})`)
     .each(function(d,i){
         let cur = d3.select(this)
-        cur.selectAll("line").style("opacity",d!=0?viewParams.showCountryAxis:1)   // Always show the #0 axis
+        cur.selectAll("line")
+        .transition()
+        .duration(dur_time)
+        .style("opacity",d!=0?viewParams.showCountryAxis:1)   // Always show the #0 axis
     })
 
     d3.selectAll("g.countryNameGroup")
