@@ -8,7 +8,7 @@
  * @param data    Données provenant d'un fichier CSV.
  */
 function initializeData(data) {
-  var monthList = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+  var monthList = ["null","JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
   data.map(
     d => d.tests.map(dd=> {
         dd.YIELD = parseFloat(dd.YIELD)
