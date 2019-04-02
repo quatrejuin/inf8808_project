@@ -19,7 +19,7 @@ function initialBubbleChart(data, x, y, r ,view, countries, pBar, endFunc) {
   var simulation = d3.forceSimulation(data)
   .force('x', d3.forceX().x(function(d) {
     return x(d.date);
-  }))
+  }).strength(1))
   .force('y', d3.forceY().y(function(d) {
     var y_base = 0
     if (view == "country")
@@ -34,13 +34,16 @@ function initialBubbleChart(data, x, y, r ,view, countries, pBar, endFunc) {
 
   }))
   .force('collision', d3.forceCollide().radius(function(d) {
-    return r(d.YIELD)+0.1;
-  }))
+    return r(d.YIELD)+0.5;
+  }).strength(1).iterations(1))
   .on("tick",()=>{
     updateProgressBar(pBar, i/400)
     i++
   })
   .on("end", endFunc)
+
+
+
 
 }
 

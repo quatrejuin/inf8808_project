@@ -43,3 +43,7 @@ circle.dot:hover{
   position: absolute;
   text-align: center;
 }
+
+.fade {
+  fill-opacity: 0.1
+}

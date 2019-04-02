@@ -10,7 +10,11 @@
 function initializeData(data) {
   var monthList = ["null","JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
   data.map(
-    d => d.tests.map(dd=> {
+    d => {
+      d.tests.map(dd=> {
+        var regex = /([a-zA-Z]*)([a-zA-Z-]*)/;
+        var m = regex.exec(dd.TYPE)
+        dd.TYPE = m[1]
         dd.YIELD = parseFloat(dd.YIELD)
         if (isNaN(dd.YIELD))
         {
@@ -19,7 +23,9 @@ function initializeData(data) {
         dd.date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
         dd.country = d.country
     })
-    )
+    d.tests = d.tests.filter(d=>d.YIELD!=0)
+  }
+  )
 }
 
 
@@ -44,8 +50,8 @@ function domainX(xFocus, xContext, data) {
   function domainY(axisGroups) {
     var y = function(pos)
     {
-        let spaceBig = 220, spaceSmall = 100;
-        let spaceList = [0,spaceBig,spaceBig - spaceSmall/2,spaceSmall,spaceSmall,spaceSmall]
+        let spaceBig = 350, spaceSmall = 100;
+        let spaceList = [50,spaceBig,spaceBig*0.5,spaceSmall,spaceSmall,spaceSmall,spaceSmall, spaceSmall]
         let posList = spaceList.map((s,i)=>i>1?d3.sum(spaceList.slice(0,i+1)):s )
         
         return posList[pos]

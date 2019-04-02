@@ -9,7 +9,7 @@
     },
     height = {
         overall: 400,
-        country: 950,
+        country: 1150,
         context: 50,
     },
     width = 1200 - margin.left - margin.right,
@@ -26,9 +26,30 @@
         fr:[3,"France"],
         cn:[4,"China"],
         in:[5,"India"],
-        pk:[5,"Pakistan"],
-        nk:[5,"North Korea"]
+        pk:[6,"Pakistan"],
+        nk:[7,"North Korea"]
     }
+
+    var types = {"A":"atmospheric",
+    "AH":"atmospheric, high altitude",
+    "AS":"atmospheric, surface",
+    "AW":"atmospheric, water surface",
+    "AX":"space",
+    "CR":"cratering burst",
+    "UG":"underground",
+    "UW":"underwater"
+    }
+
+    var purposes = {
+        "C":"combat use, strategic warfare",
+        "PR":"peaceful research",
+        "SE":"safety experiment",
+        "ST":"safety/transport experiment",
+        "VU":"Vela uniform test",
+        "WE":"weapons effects",
+        "WR":"nuclear weapons related"
+    }
+    
     var minGroup = d3.min(Object.values(countries), d=>d[0])
     var maxGroup = d3.max(Object.values(countries), d=>d[0])
     var axisGroups = d3.range(minGroup,maxGroup+1)
@@ -88,9 +109,6 @@
     //var yAxisFocus = d3.axisLeft(yFocus);
   
     var xAxisContext = d3.axisBottom(xContext).tickFormat(localization.getFormattedDate);
-
-    // Add view switch button
-    //window.currentView = "overall";
     
     var svg = d3.select(".g-graphic").append("svg")
         .attr("height", height.context + height.overall + margin.top + margin.bottom)
@@ -137,8 +155,16 @@
             pBar1.remove()
             pBar2.remove()
 
-            
-    
+
+
+            let panelFilterPurpose = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-purpose")
+            createCheckbox(panelFilterPurpose,0,30, purposes)
+
+
+            let panelFilterType = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-type")
+            createCheckbox(panelFilterType,0,0, types)
+
+
             createHorizontalLines(focus,xFocus,y,countries)
             createCountryNameLabel(focus,xFocus,y,color,countries)
 
