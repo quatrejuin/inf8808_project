@@ -112,7 +112,12 @@
     initializeData(data, purposes_categories)
 
 
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#212228', '#FF5500'];
+    // var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var color = d3.scaleOrdinal()
+    .range(colors);
+
+
 
     var xFocus = d3.scaleTime()
     .rangeRound([0, width - 60]);
