@@ -105,6 +105,7 @@ function createHorizontalLines(focus, x, y, countries)
   .attr("y2",0)
   .style("stroke","#00000050")
   .style("stroke-width",1)
+  .style("shape-rendering","crispEdges")
   .attr("stroke-dasharray","10,5")
 
 }

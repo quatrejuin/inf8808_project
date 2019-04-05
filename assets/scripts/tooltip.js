@@ -15,7 +15,11 @@
 function getToolTipText(d, formatNumber, formatDate, countries) {
   // TODO: Retourner le texte à afficher dans l'infobulle selon le format demandé.
   //       Assurez-vous d'utiliser la fonction "formatNumber" pour formater les nombres correctement.
-  return "Country: "+countries[d.country][1]+"<br>"
+  return ""
+  +"ID: "+d["ID#"]+"<br>"
+  +"Type: "+d.TYPE+"<br>"
+  +"PURPOSE: "+d.PUR+"<br>"
+  +"Country: "+countries[d.country][1]+"<br>"
   +"Date: "+formatDate(d.date)+"<br>"
   +"Yield: "+d.YIELD;
 }

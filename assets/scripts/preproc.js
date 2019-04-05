@@ -7,7 +7,7 @@
  *
  * @param data    Données provenant d'un fichier CSV.
  */
-function initializeData(data) {
+function initializeData(data, purposes_categories) {
   var monthList = ["null","JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
   data.map(
     d => {
@@ -22,6 +22,10 @@ function initializeData(data) {
         }
         dd.date = d3.timeParse("%Y-%m-%d")(dd.YEAR+"-"+monthList.indexOf(dd.MON)+"-"+dd.DAY)
         dd.country = d.country
+        m = regex.exec(dd.PUR)
+        dd.PUR = purposes_categories[m[1]]
+        
+
     })
     d.tests = d.tests.filter(d=>d.YIELD!=0)
   }

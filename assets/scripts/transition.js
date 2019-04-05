@@ -60,4 +60,10 @@ function transitionView(curView,height,margin,y) {
     .attr("transform",function(d,i) {
         return `translate(0,${viewParams.posLabelGp[i]})`
     })
+
+    d3.selectAll(".tick line").attr("y", 0)
+    .transition()
+    .duration(dur_time)
+    .attr("y2",-viewParams.h);
+
 }

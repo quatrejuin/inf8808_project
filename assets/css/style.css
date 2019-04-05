@@ -45,5 +45,6 @@ circle.dot:hover{
 }
 
 .fade {
-  fill-opacity: 0.1
+  fill-opacity: 0.1;
+  pointer-events: none;
 }

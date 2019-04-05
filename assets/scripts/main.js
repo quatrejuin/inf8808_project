@@ -8,8 +8,8 @@
         left: 125
     },
     height = {
-        overall: 400,
-        country: 1150,
+        overall: 500,
+        country: 1200,
         context: 50,
     },
     width = 1200 - margin.left - margin.right,
@@ -47,7 +47,34 @@
         "ST":"safety/transport experiment",
         "VU":"Vela uniform test",
         "WE":"weapons effects",
-        "WR":"nuclear weapons related"
+        "WR":"nuclear weapons related",
+        "I":"industrial application",
+        "JV":"joint verification",
+        "ME":"military exercise",
+        "FS":"fundamental science",
+        "UNKNOWN":"Unknown"
+    }
+
+    var purposes_categories = {
+         "C":"Military",
+         "WE":"Military",
+         "WR":"Military",
+         "ME":"Military",
+        "PR":"Scientific Research",
+        "I" :"Scientific Research",
+        "FS":"Scientific Research",
+        "SE":"Safety Research",
+        "ST":"Safety Research",
+        "VU":"Safety Research",
+        "JV":"Safety Research",
+        "":"Unknown"
+    }
+
+    var purp_cat_des = {
+        "Military" : "Military",
+        "Scientific Research": "Scientific Research",
+        "Safety Research": "Safety Research",
+        "Unknown":"Unknown"
     }
     
     var minGroup = d3.min(Object.values(countries), d=>d[0])
@@ -82,7 +109,7 @@
             d["ID#"][0]==="4"
             ), 'nk'))
     
-    initializeData(data)
+    initializeData(data, purposes_categories)
 
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -108,7 +135,7 @@
     var xAxisFocus = d3.axisBottom(xFocus)//.tickFormat(localization.getFormattedDate);
     //var yAxisFocus = d3.axisLeft(yFocus);
   
-    var xAxisContext = d3.axisBottom(xContext).tickFormat(localization.getFormattedDate);
+    var xAxisContext = d3.axisTop(xContext).tickFormat(localization.getFormattedDate)
     
     var svg = d3.select(".g-graphic").append("svg")
         .attr("height", height.context + height.overall + margin.top + margin.bottom)
@@ -156,9 +183,8 @@
             pBar2.remove()
 
 
-
             let panelFilterPurpose = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-purpose")
-            createCheckbox(panelFilterPurpose,0,30, purposes)
+            createCheckbox(panelFilterPurpose,0,30, purp_cat_des)
 
 
             let panelFilterType = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-type")
@@ -192,16 +218,18 @@
                 transitionView(d3.select(this), height, margin, y);
               });
 
-            transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
-
             context.append("g")
             .attr("class", "x axis")
             .call(xAxisContext);
+
+            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "2,2");
 
             tip.html(function(d) {
                 return getToolTipText.call(this, d, formatNumber, formatDate, countries)
             });
             focus.call(tip);
+
+            transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
         })
     })
 })

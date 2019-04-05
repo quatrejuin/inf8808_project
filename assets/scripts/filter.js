@@ -15,6 +15,7 @@ function createCheckbox(g,x,y,alist)
     filterItems.append("input")
     .attr("type","checkbox")
     .attr("id",d=>d)
+    .property("checked",true)
 
     filterItems.append("label")
     .attr('for',d=>d)
@@ -39,7 +40,7 @@ function filtered()
     d3.selectAll("circle.dot")
     .each(
         function(d) {
-            if (!choices.includes(d.TYPE))
+            if (! (choices.includes(d.TYPE) && choices.includes(d.PUR)))
             {
                 d3.select(this).classed("fade",true)
             }
