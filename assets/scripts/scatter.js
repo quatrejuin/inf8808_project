@@ -35,7 +35,7 @@ function initialBubbleChart(data, x, y, r ,view, countries, pBar, endFunc) {
   }))
   .force('collision', d3.forceCollide().radius(function(d) {
     return r(d.YIELD)+0.5;
-  }).strength(1).iterations(1))
+  }).strength(1).iterations(3))
   .on("tick",()=>{
     updateProgressBar(pBar, i/400)
     i++
@@ -64,10 +64,15 @@ function createBubbleChart(g, data, x, y, r, color, tip, view) {
   // TODO: Dessiner les cercles du graphique en utilisant les échelles spécifiées.
   //       Assurez-vous d'afficher l'infobulle spécifiée lorsqu'un cercle est survolé.
 
-var u = g.append("g").selectAll('circle')
-.data(data);
-
-u.enter()
+var cg = g.append("g").selectAll('g')
+.data(data)
+.enter()                    // select the countries
+.append('g')
+.attr("class",d=>d.country)
+.classed("dots",true)
+.selectAll('circle')
+.data(d=>d.tests)
+.enter()                    // select the expositions in each country
 .append('circle')
 .classed("dot",true)
 .attr('r', function(d) {
@@ -84,8 +89,6 @@ u.enter()
 })
 .on('mouseover', tip.show)
 .on('mouseout', tip.hide);
-
-
 }
 
 function createHorizontalLines(focus, x, y, countries)
