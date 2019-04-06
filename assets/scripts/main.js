@@ -188,12 +188,13 @@
             pBar2.remove()
 
 
+
             let panelFilterPurpose = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-purpose")
-            createCheckbox(panelFilterPurpose,0,30, purp_cat_des)
+            createCheckboxes2(panelFilterPurpose,0,30, purp_cat_des)
 
 
             let panelFilterType = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-type")
-            createCheckbox(panelFilterType,0,0, types)
+            createCheckboxes(panelFilterType,0,0, types)
 
 
             createHorizontalLines(focus,xFocus,y,countries)
@@ -227,7 +228,7 @@
             .attr("class", "x axis")
             .call(xAxisContext);
 
-            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "2,2");
+            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "10,4");
 
             tip.html(function(d) {
                 return getToolTipText.call(this, d, formatNumber, formatDate, countries)
