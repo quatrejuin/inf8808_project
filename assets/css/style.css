@@ -49,6 +49,50 @@ h1 {
   cursor: pointer;
 }
 
+circle.dot {
+  transition: 0.5s;
+}
+
+circle.dot:hover {
+  stroke: black;
+  stroke-width: 2px;
+  cursor: pointer;
+}
+
+.brush .extent {
+  stroke: white;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+/* **** Tooltip **** */
+.d3-tip {
+  line-height: 1;
+  padding: 12px;
+  border-radius: 2px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.d3-tip:after {
+  display: inline;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: -4px 0 0 0;
+  box-sizing: border-box;
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.fade {
+  fill-opacity: 0.1;
+}
+
 .el-checkbox {
   padding: 6px 15px 6px 10px;
   border-radius: 4px;
@@ -165,5 +209,5 @@ h1 {
   padding: 20px;
   margin-bottom: 15px;
   border-radius: 4px;
-  border: 1px solid #212228;
+  border: 1px solid #999999;
 }

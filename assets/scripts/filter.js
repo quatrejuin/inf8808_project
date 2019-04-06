@@ -19,8 +19,7 @@ function createCheckbox(g,x,y,alist)
 
     filterItems.append("label")
     .attr('for',d=>d)
-    .text(d=>alist[d])
-
+    .text(d=>cleanItUp(alist[d]))
 }
 
 
@@ -49,4 +48,14 @@ function filtered()
             }
         }
     )
+}
+
+function cleanItUp(str){
+    var s = str.toLowerCase();
+    if (s.includes('atmospheric,')) {
+        s = s.replace('atmospheric,', '');
+        return s = s.charAt(1).toUpperCase() + s.slice(2);
+    } else {
+        return s = s.charAt(0).toUpperCase() + s.slice(1);
+    }
 }
