@@ -8,7 +8,7 @@
         left: 125
     },
     height = {
-        overall: 500,
+        overall: 550,
         country: 1200,
         context: 50,
     },
@@ -173,16 +173,16 @@
     let pBar1 = createProgressBar(svg, positionX, positionY, width, "#1f77b450")
     let pBar2 = createProgressBar(svg, positionX, positionY, width, "#1f77b4ff")
 
-    initialBubbleChart(allData, xFocus, y, r, "country", countries, pBar1,()=>{
-        allData.forEach(d=>{
-            d.x1 = d.x
-            d.y1 = d.y
+
+    d3.json("./data/positions.json").then(function(positions){
+
+        allData.forEach((d,i)=>{
+                        d.x0 = positions[i].x0
+                        d.y0 = positions[i].y0
+                        d.x1 = positions[i].x1
+                        d.y1 = positions[i].y1
         })
-        initialBubbleChart(allData, xFocus, y, r, "overall", countries, pBar2,()=>{
-            allData.forEach(d=>{
-                d.x0 = d.x
-                d.y0 = d.y
-            })
+
 
             pBar1.remove()
             pBar2.remove()
@@ -199,7 +199,7 @@
             createHorizontalLines(focus,xFocus,y,countries)
             createCountryNameLabel(focus,xFocus,y,color,countries)
 
-            createBubbleChart(focus, allData, xFocus, y, r, color, tip)
+            createBubbleChart(focus, data, xFocus, y, r, color, tip)
 
 
             // Add two switch buttons
@@ -236,7 +236,7 @@
 
             transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
         })
-    })
+    // })
 })
 })
 })
