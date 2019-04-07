@@ -196,10 +196,16 @@
 
 
             let panelFilterPurpose = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-purpose")
+            panelFilterPurpose = panelFilterPurpose.append("div")
+            .attr("class","filter-category col-12")
+            .attr("id","1-filters")
             createCheckbox(panelFilterPurpose,0,30, purp_cat_des)
 
 
             let panelFilterType = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-type")
+            panelFilterType = panelFilterType.append("div")
+            .attr("class","filter-category col-12")
+            .attr("id","2-filters")
             createCheckbox(panelFilterType,0,0, types)
 
 

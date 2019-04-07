@@ -50,7 +50,7 @@ h1 {
 }
 
 circle.dot {
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 circle.dot:hover {
@@ -100,6 +100,7 @@ circle.dot:hover {
   box-sizing: border-box;
   line-height: normal;
   height: 32px;
+  margin-right: 10px;
 }
 
 .el-checkbox {
@@ -204,6 +205,11 @@ circle.dot:hover {
 .el-checkbox__input.is-checked + .el-checkbox__label {
   color: #409eff;
 }
+
+.el-checkbox__label {
+  margin-left: 5px;
+}
+
 
 .filter-category {
   padding: 20px;

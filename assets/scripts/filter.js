@@ -12,14 +12,20 @@ function createCheckbox(g,x,y,alist)
     .classed("filter-input",true)
     .on("change",filtered)
 
-    filterItems.append("input")
+    let lbl = filterItems.append("label")
+    .attr('for',d=>d)
+    .attr('class',"el-checkbox is-checked")
+    lbl.append("input")
     .attr("type","checkbox")
     .attr("id",d=>d)
+    .attr('class',"el-checkbox__input is-checked")
     .property("checked",true)
 
-    filterItems.append("label")
-    .attr('for',d=>d)
+    lbl.append("span")
+    .attr('class',"el-checkbox__label")
     .text(d=>cleanItUp(alist[d]))
+
+
 }
 
 
