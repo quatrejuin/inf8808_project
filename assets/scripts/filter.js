@@ -42,6 +42,8 @@ function filtered()
         }
     )
 
+
+    var circlesToShow = new Set()   // Record the gid of the circles to show
     d3.selectAll("circle.dot")
     .each(
         function(d) {
@@ -51,6 +53,22 @@ function filtered()
             }
             else {
                 d3.select(this).classed("fade",false)
+                circlesToShow.add(d.gid)
+            }
+        }
+    )
+
+    // Show/Hide correspond annotation
+    d3.selectAll("g.annotation")
+    .each(
+        function(d){
+            if (circlesToShow.has(d.data.gid))
+            {
+                d3.select(this).classed("invisible",false);
+            }
+            else
+            {
+                d3.select(this).classed("invisible",true);
             }
         }
     )

@@ -59,6 +59,11 @@ circle.dot:hover, circle.dot.hover{
   cursor: pointer;
 }
 
+circle.fade
+{
+  pointer-events: none;
+}
+
 .brush .extent {
   stroke: white;
   fill-opacity: .125;
