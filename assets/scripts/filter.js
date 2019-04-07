@@ -47,14 +47,13 @@ function filtered()
     d3.selectAll("circle.dot")
     .each(
         function(d) {
-            if (! (choices.includes(d.TYPE) && choices.includes(d.PUR)))
-            {
-                d3.select(this).classed("fade",true)
-            }
-            else {
-                d3.select(this).classed("fade",false)
-                circlesToShow.add(d.gid)
-            }
+                let toShow = choices.includes(d.TYPE) && choices.includes(d.PUR)
+                d3.select(this)
+                .classed("fade",!(toShow))
+                if (toShow)
+                {
+                    circlesToShow.add(d.gid)
+                }
         }
     )
 
@@ -62,14 +61,8 @@ function filtered()
     d3.selectAll("g.annotation")
     .each(
         function(d){
-            if (circlesToShow.has(d.data.gid))
-            {
-                d3.select(this).classed("invisible",false);
-            }
-            else
-            {
-                d3.select(this).classed("invisible",true);
-            }
+                d3.select(this)
+                .classed("invisible",!(circlesToShow.has(d.data.gid)));
         }
     )
 }
