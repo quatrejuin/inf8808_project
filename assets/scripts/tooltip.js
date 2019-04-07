@@ -17,8 +17,9 @@ function getToolTipText(d, formatNumber, formatDate, countries) {
   //       Assurez-vous d'utiliser la fonction "formatNumber" pour formater les nombres correctement.
   return ""
   +"ID: "+d["ID#"]+"<br>"
+  +"Shot: "+d.SHOT+"<br>"
   +"Type: "+d.TYPE+"<br>"
-  +"PURPOSE: "+d.PUR+"<br>"
+  +"Purpose: "+d.PUR+"<br>"
   +"Country: "+countries[d.country][1]+"<br>"
   +"Date: "+formatDate(d.date)+"<br>"
   +"Yield: "+d.YIELD;

@@ -24,7 +24,7 @@ function initializeData(data, purposes_categories) {
         dd.country = d.country
         m = regex.exec(dd.PUR)
         dd.PUR = purposes_categories[m[1]]
-        
+        dd.gid = dd.country+dd["ID#"]
 
     })
     d.tests = d.tests.filter(d=>d.YIELD!=0)

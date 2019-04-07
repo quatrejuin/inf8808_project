@@ -71,7 +71,7 @@ var cg = g.append("g").selectAll('g')
 .attr("class",d=>d.country)
 .classed("dots",true)
 .selectAll('circle')
-.data(d=>d.tests)
+.data(d=>d.tests,d=>d.gid)
 .enter()                    // select the expositions in each country
 .append('circle')
 .classed("dot",true)

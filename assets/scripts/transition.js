@@ -17,7 +17,8 @@ function transitionView(curView,height,margin,y) {
         showOverallAxis: 1-v,   // 0: Hide; 1: Show
         axisY: [c=>0,c=>y(c)][v],
         posLabelGp: [{0:-120,1:-90,2:-60,3:-30,4:0,5:30,6:60,7:90},
-            {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0}][v]
+            {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0}][v],
+        showAnnotation: v,      // 0: Hide; 1: Show
     }
     var g = d3.select("g.focus")
     var u = g.selectAll('circle.dot')
@@ -26,6 +27,11 @@ function transitionView(curView,height,margin,y) {
     .delay(d=>d["x"+v])
     .attr("cx",d=>d["x"+v])
     .attr("cy",d=>d["y"+v])
+
+    d3.select(".annotation-explosions")
+    .transition()
+    .duration(dur_time)
+    .attr("opacity",viewParams.showAnnotation)
 
     d3.select("svg")
     .transition()

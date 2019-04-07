@@ -22,7 +22,7 @@
         // countryCode: [axisGroup, countryName]
         us:[0,"United States"],
         ru:[1,"Russia"],
-        uk:[2,"United Kindom"],
+        uk:[2,"United Kingdom"],
         fr:[3,"France"],
         cn:[4,"China"],
         in:[5,"India"],
@@ -76,6 +76,13 @@
         "Safety Research": "Safety Research",
         "Unknown":"Unknown"
     }
+    
+    var explosion_list = [{gid:"us1",name:"Trinity",note:"World first nuclear test",dx:-25,dy:50},
+    {gid:"us2",name:"Little boy",note:"Hiroshima",dx:5,dy:-80},
+    {gid:"us3",name:"Fatman",note:"Nagasaki",dx:-20,dy:-30},
+    {gid:"us46",name:"Castle bravo",note:"First H-Bomb",dx:-40,dy:60},
+    {gid:"ru1",name:"RDS-1",note:"First Russian nuclear test",dx:-20,dy:-30},
+    {gid:"ru135",name:"Tsarbomba",note:"Strongest nuclear device ever detonated",dx:-50,dy:-60},]
     
     var minGroup = d3.min(Object.values(countries), d=>d[0])
     var maxGroup = d3.max(Object.values(countries), d=>d[0])
@@ -235,6 +242,8 @@
             focus.call(tip);
 
             transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
+
+            createAnnotationExplosion(explosion_list)
         })
     // })
 })
