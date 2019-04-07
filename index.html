@@ -5,7 +5,7 @@
   <title>INF8808 - Project</title>
   <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="assets/css/normalize.css">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/global.css">
   <!-- <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> -->
@@ -31,38 +31,98 @@
         <div class="top-title">Essais nucléaires</div>
       </div>
       <div class="row">
-        <div id="1-filters" class="col-12" class="filters">
-          <label class="checkbox-button">
-            <input type="checkbox" class="checkbox-button__original" value="Atmospheric">
-            <span class="checkbox-button__inner">Atmospheric</span>
+        <div id="1-filters" class="filter-category col-12">
+          <label role="checkbox" class="el-checkbox">
+            <span class="el-checkbox__input">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1"></span>
+              <span class="el-checkbox__label">Atmospheric</span>
           </label>
-          <label class="checkbox-button is-checked">
-            <input type="checkbox" class="checkbox-button__original" value="Atmospheric">
-            <span class="checkbox-button__inner">Cratering Burst</span>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">High altitude</span>
           </label>
-          <label class="checkbox-button">
-            <input type="checkbox" class="checkbox-button__original" value="Atmospheric">
-            <span class="checkbox-button__inner">Underground</span>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Surface</span>
           </label>
-          <label class="checkbox-button is-checked">
-            <input type="checkbox" class="checkbox-button__original" value="Atmospheric">
-            <span class="checkbox-button__inner">Underwater</span>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Water surface</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Space</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Cratering burst</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Underground</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Underwater</span>
           </label>
         </div>
-        <div id="2-filters" class="col-12">
-          
+      </div>
+      <div class="row">
+        <div id="2-filters" class="filter-category col-12">
+          <label role="checkbox" class="el-checkbox">
+            <span class="el-checkbox__input">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1"></span>
+              <span class="el-checkbox__label">Military</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Scientific research</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Safety research</span>
+          </label>
+          <label role="checkbox" class="el-checkbox is-checked" aria-checked="true">
+            <span aria-checked="mixed" class="el-checkbox__input is-checked">
+              <span class="el-checkbox__inner"></span>
+              <input type="checkbox" aria-hidden="true" class="el-checkbox__original" value="Option1">
+            </span>
+            <span class="el-checkbox__label">Unknown</span>
+          </label>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Overall view</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab"  role="tab" aria-controls="profile" aria-selected="false">View by country</a>
-            </li>
-          </ul>
+          
         </div>
       </div>
       <div class="g-graphic">
