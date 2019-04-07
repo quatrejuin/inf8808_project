@@ -240,7 +240,7 @@
             .attr("class", "x axis")
             .call(xAxisContext);
 
-            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "2,2");
+            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "10,4");
 
             tip.html(function(d) {
                 return getToolTipText.call(this, d, formatNumber, formatDate, countries)
