@@ -18,11 +18,9 @@ function createAnnotationExplosion(explosions)
             note: {
                 label: exp.note,
                 bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
-                title: exp.name
+                title: exp.name,
             },
-            //can use x, y directly instead of data
-            x: explosions[i].x,
-            y: explosions[i].y,
+            data: explosions[i],  // Use data instead of x,y for keep gid info
             dx: explosions[i].dx,
             dy: explosions[i].dy,
             }  
@@ -31,7 +29,15 @@ function createAnnotationExplosion(explosions)
     const makeAnnotations = d3.annotation()
     //also can set and override in the note.padding property
     //of the annotation object
-    .notePadding(15)
+    .accessors({
+        x: d => d.x,
+        y: d => d.y
+      })
+      .accessorsInverse({
+        x: d => d.x,
+        y: d => d.y
+      })
+    .notePadding(5)
     .type(type)
     .annotations(annotations)
 
@@ -42,4 +48,16 @@ function createAnnotationExplosion(explosions)
 
     d3.selectAll("g.annotation-explosions")
     .attr("opacity",0)
+    
+    makeAnnotations
+    .on("noteover",d=>{
+        // console.log(d.data.gid)
+        d3.selectAll("circle.dot").filter(dd=>dd.gid==d.data.gid)
+        .classed("hover",true)
+    })
+    .on("noteout",d=>{
+        // console.log(d.data.gid)
+        d3.selectAll("circle.dot").filter(dd=>dd.gid==d.data.gid)
+        .classed("hover",false)
+    })
 }

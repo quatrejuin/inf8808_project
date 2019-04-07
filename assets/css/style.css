@@ -53,7 +53,7 @@ circle.dot {
   /* transition: 0.5s; */
 }
 
-circle.dot:hover {
+circle.dot:hover, circle.dot.hover{
   stroke: black;
   stroke-width: 2px;
   cursor: pointer;
