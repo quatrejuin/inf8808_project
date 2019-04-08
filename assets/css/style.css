@@ -13,6 +13,8 @@ html, body {
   min-width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-size: cover;
+  background-image: linear-gradient(to top, #000d0c, #081113, #101518, #16181b, #1b1b1e);
+  color: white;
 }
 
 h1 {
@@ -38,8 +40,6 @@ h1 {
 }
 
 #welcome-info {
-  /*	border: 1px solid white;
-  */
   padding: 2em;
   color: white;
   font-family: OggRoman;
@@ -224,12 +224,15 @@ circle.dot:hover {
   padding: 20px;
   margin-bottom: 15px;
   border-radius: 4px;
-  border: 1px solid #999999;
+  background-color: #212228;
 }
 
 /* TABS */
 .el-tabs__header {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .el-tabs--card > .el-tabs__header {
@@ -260,7 +263,7 @@ circle.dot:hover {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background-color: #e4e7ed;
+  background-color: #999999;
   z-index: 0;
 }
 
@@ -270,7 +273,6 @@ circle.dot:hover {
 
 .el-tabs__item.is-active {
   color: #409eff;
-  border-bottom: 3px solid #409eff;
 }
 
 .el-tabs--card > .el-tabs__header .el-tabs__nav {
@@ -307,12 +309,39 @@ circle.dot:hover {
   list-style: none;
   font-size: 14px;
   font-weight: 500;
-  color: #303133;
+  color: #999999;
   position: relative;
   cursor: pointer;
   transition: 0.5s;
+  text-transform: uppercase;
 }
 
 .el-tabs--bottom.el-tabs--border-card .el-tabs__item:nth-child(2), .el-tabs--bottom.el-tabs--card .el-tabs__item:nth-child(2), .el-tabs--bottom .el-tabs--left .el-tabs__item:nth-child(2), .el-tabs--bottom .el-tabs--right .el-tabs__item:nth-child(2), .el-tabs--top.el-tabs--border-card .el-tabs__item:nth-child(2), .el-tabs--top.el-tabs--card .el-tabs__item:nth-child(2), .el-tabs--top .el-tabs--left .el-tabs__item:nth-child(2), .el-tabs--top .el-tabs--right .el-tabs__item:nth-child(2) {
   padding-left: 20px;
+}
+
+.axisYears {
+  color: white;
+}
+
+.g-filters {
+  margin-top: 15px;
+}
+
+g.countryNameGroup {
+  margin-bottom: 10px;
+}
+
+.title {
+  color: white;
+  height: 2em;
+  text-transform: uppercase;
+}
+
+.title-container {
+  padding: 2em;
+}
+
+g.annotation-explosions text {
+  fill: white;
 }

@@ -119,7 +119,7 @@
     initializeData(data, purposes_categories)
 
 
-    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#212228', '#FF5500', '#FEE21D'];
+    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#999999', '#FF5500', '#FEE21D'];
     // var color = d3.scaleOrdinal(d3.schemeCategory10);
     var color = d3.scaleOrdinal()
     .range(colors);
@@ -152,6 +152,7 @@
     var svg = d3.select(".g-graphic").append("svg")
         .attr("height", height.context + height.overall + margin.top + margin.bottom)
         .attr("width", width + margin.left + margin.right)
+        .attr("class", "axisYears")
 
     var graph = svg.append("g")
         .classed("graph",true)
@@ -195,14 +196,14 @@
             pBar2.remove()
 
 
-            let panelFilterPurpose = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-purpose")
+            let panelFilterPurpose = d3.select("div.g-filters").insert("div").attr("id","filter-purpose")
             panelFilterPurpose = panelFilterPurpose.append("div")
             .attr("class","filter-category col-12")
             .attr("id","1-filters")
             createCheckbox(panelFilterPurpose,0,30, purp_cat_des)
 
 
-            let panelFilterType = d3.select("div.g-content").insert("div",":first-child").attr("id","filter-type")
+            let panelFilterType = d3.select("div.g-filters").insert("div").attr("id","filter-type")
             panelFilterType = panelFilterType.append("div")
             .attr("class","filter-category col-12")
             .attr("id","2-filters")
@@ -240,7 +241,7 @@
             .attr("class", "x axis")
             .call(xAxisContext);
 
-            context.selectAll(".tick line").attr("stroke", "#7773").attr("stroke-dasharray", "10,4");
+            context.selectAll(".tick line").attr("stroke", "#999999").attr("stroke-dasharray", "1,1");
 
             tip.html(function(d) {
                 return getToolTipText.call(this, d, formatNumber, formatDate, countries)
