@@ -119,7 +119,7 @@
     initializeData(data, purposes_categories)
 
 
-    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#212228', '#FF5500'];
+    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#212228', '#FF5500', '#FEE21D'];
     // var color = d3.scaleOrdinal(d3.schemeCategory10);
     var color = d3.scaleOrdinal()
     .range(colors);
@@ -216,19 +216,19 @@
 
 
             // Add two switch buttons
-            var buttons = d3.select("div.g-graphic")
-            .insert("div", ":first-child")
-            .classed("g-buttons",true)
-            buttons.append("button")
-            .classed("g-button",true)
-            .attr("data-view","overall")
-            .text("The Overall Picture")
-            buttons.append("button")
-            .classed("g-button",true)
-            .attr("data-view","country")
-            .text("The View by Country")
+            // var buttons = d3.select("div.g-graphic")
+            // .insert("div", ":first-child")
+            // .classed("g-buttons",true)
+            // buttons.append("button")
+            // .classed("g-button",true)
+            // .attr("data-view","overall")
+            // .text("The Overall Picture")
+            // buttons.append("button")
+            // .classed("g-button",true)
+            // .attr("data-view","country")
+            // .text("The View by Country")
             
-            d3.selectAll(".g-content button[data-view]")
+            d3.selectAll(".g-content div[data-view]")
             .datum(function(d) {
                 return this.getAttribute("data-view");
             })
@@ -247,7 +247,7 @@
             });
             focus.call(tip);
 
-            transitionView(d3.select(".g-buttons button[data-view='overall']"),height,margin,y)
+            transitionView(d3.select("div[data-view='overall']"),height,margin,y)
 
             createAnnotationExplosion(explosion_list)
         })
