@@ -119,7 +119,7 @@
     initializeData(data, purposes_categories)
 
 
-    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#999999', '#FF5500', '#FEE21D'];
+    var colors = ['#0D77CC', '#21CFAC', '#EC326C', '#8F3A90', '#47409D', '#999999', '#FF5500', '#157A88'];
     // var color = d3.scaleOrdinal(d3.schemeCategory10);
     var color = d3.scaleOrdinal()
     .range(colors);
