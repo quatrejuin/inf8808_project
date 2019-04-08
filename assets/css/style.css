@@ -63,8 +63,8 @@ circle.dot {
   */
 }
 
-circle.dot:hover {
-  stroke: black;
+circle.dot:hover, circle.dot.hover{
+  stroke: white;
   stroke-width: 2px;
   cursor: pointer;
 }
