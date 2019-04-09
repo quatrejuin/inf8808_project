@@ -40,6 +40,7 @@ section.landing {
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-wrap: nowrap;
   margin-bottom: 4em;
 }
 
@@ -49,6 +50,16 @@ section.landing {
 
 .left {
   padding: 5em;
+  flex-direction: column;
+  display: flex;
+  /*  justify-content: center;
+  */
+  /*  align-items: center;
+*/
+}
+
+.logo {
+  margin-bottom: 4em;
 }
 
 .right {
@@ -66,12 +77,30 @@ section.two {
   width: 100vw;
 }
 
-.left, .right {
+.right {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+#logo {
+  -webkit-animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
 .rotated:after {
   content: 'detonations!';
   display: inline-block;
