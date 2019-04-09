@@ -70,6 +70,11 @@ circle.dot:hover, circle.dot.hover {
   transition: 0.5s;
 }
 
+circle.fade {
+  fill-opacity: 0.1;
+  pointer-events: none;
+}
+
 .brush .extent {
   stroke: white;
   fill-opacity: .125;
@@ -100,9 +105,6 @@ circle.dot:hover, circle.dot.hover {
   text-align: center;
 }
 
-.fade {
-  fill-opacity: 0.1;
-}
 
 .el-checkbox {
   padding: 6px 15px 6px 10px;

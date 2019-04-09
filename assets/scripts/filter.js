@@ -50,6 +50,7 @@ function filtered()
                 let toShow = choices.includes(d.TYPE) && choices.includes(d.PUR)
                 d3.select(this)
                 .classed("fade",!(toShow))
+                .classed("show",!(toShow))
                 if (toShow)
                 {
                     circlesToShow.add(d.gid)

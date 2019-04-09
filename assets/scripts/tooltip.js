@@ -22,5 +22,5 @@ function getToolTipText(d, formatNumber, formatDate, countries) {
   +"Purpose: "+d.PUR+"<br>"
   +"Country: "+countries[d.country][1]+"<br>"
   +"Date: "+formatDate(d.date)+"<br>"
-  +"Yield: "+d.YIELD;
+  +"Yield: "+d.YIELD+" kt";
 }
