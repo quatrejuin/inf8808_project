@@ -72,7 +72,6 @@ circle.dot:hover, circle.dot.hover {
 
 circle.fade {
   fill-opacity: 0.1;
-  transition: 1s;
   pointer-events: none;
 }
 
