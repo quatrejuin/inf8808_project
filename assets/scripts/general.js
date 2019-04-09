@@ -12,3 +12,11 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " is-active";
   });
 } 
+
+$(document).ready(function () {
+  $('.explore').click(function() {
+  $('html, body').animate({
+    scrollTop: $("#two").offset().top
+  }, 500)
+})
+});

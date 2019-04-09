@@ -1,7 +1,26 @@
 /* Global variables */
+@font-face {
+  font-family: Graphik;
+  src: url("../fonts/Graphik-Regular.otf");
+}
+@font-face {
+  font-family: Swiss;
+  src: url("../fonts/Swiss.ttf");
+}
+@font-face {
+  font-family: Didot;
+  src: url("../fonts/Didot.ttc");
+}
+@font-face {
+  font-family: OggRoman;
+  src: url("../fonts/Ogg-Roman.otf");
+}
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .g-graphic {
@@ -11,15 +30,82 @@
 html, body {
   min-height: 100vh;
   min-width: 100vw;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Graphik, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-size: cover;
   background-image: linear-gradient(to top, #000d0c, #081113, #101518, #16181b, #1b1b1e);
   color: white;
 }
 
-h1 {
-  font-family: ProLight;
-  text-transform: uppercase;
+section.landing {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  margin-bottom: 4em;
+}
+
+.left, .right {
+  flex: 1;
+}
+
+.left {
+  padding: 5em;
+}
+
+.right {
+  padding: 2em;
+  background-image: url("../pics/detonation.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: Swiss;
+  font-size: 2em;
+}
+
+section.two {
+  height: 100vh;
+  width: 100vw;
+}
+
+.left, .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotated:after {
+  content: 'detonations!';
+  display: inline-block;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.title__1 {
+  font-family: OggRoman;
+  font-size: 3em;
+}
+
+/*.title__1:after {
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0.5em;
+  border-top: 1px solid $grey;
+  z-index: 1;
+}
+*/
+.center {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  padding-bottom: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .row {
@@ -37,13 +123,6 @@ h1 {
   align-items: center;
   justify-content: center;
   padding: 2em;
-}
-
-#welcome-info {
-  padding: 2em;
-  color: white;
-  font-family: OggRoman;
-  font-size: 2em;
 }
 
 .btn-big {
@@ -68,11 +147,6 @@ circle.dot:hover, circle.dot.hover {
   stroke-width: 3px;
   cursor: pointer;
   transition: 0.5s;
-}
-
-circle.fade {
-  fill-opacity: 0.1;
-  pointer-events: none;
 }
 
 .brush .extent {
@@ -105,6 +179,9 @@ circle.fade {
   text-align: center;
 }
 
+.fade {
+  fill-opacity: 0.1;
+}
 
 .el-checkbox {
   padding: 6px 15px 6px 10px;
@@ -333,10 +410,8 @@ circle.fade {
 
 .title {
   color: white;
-  font-family: Didot;
+  font-family: OggRoman;
   font-size: 1.5em;
-  text-transform: uppercase;
-  font-style: italic;
 }
 
 .title-container {
@@ -346,4 +421,20 @@ circle.fade {
 
 g.annotation-explosions text {
   fill: white;
+}
+
+.explore {
+  padding: 20px 40px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: 1s;
+  background: #21CFAC;
+  border: none;
+  font-family: Graphik;
+  cursor: pointer;
+}
+
+.explore:hover {
+  background: #1B1B1E;
+  color: white;
 }
